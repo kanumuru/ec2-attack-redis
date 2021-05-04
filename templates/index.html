@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Flask APP</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="place_for_suggestions"></div>
+    </div>
+
+
+
+    <script>
+        function loadPage() {
+            $.ajax({
+                url: "/listner",
+                type: "get",
+                success: function (response) {
+                    if (response.type === 'error') {
+                        $('div').css('bg-danger');
+                        $('body').prepend("<div id=\"place_for_suggestions\">" + response + "</div>");
+                     } else {
+                         $('body').prepend("<div id=\"place_for_suggestions\">" + response + "</div>");
+                        //  $('div.card').css('bg-success');
+                     }
+                    // $("#place_for_suggestions").html(response);
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+        }
+        loadPage();
+        setInterval(function() {
+            loadPage()
+        }, 5000)
+        // // $("#search_form_input").keyup(function () {
+        //     setTimeout(() => {
+            
+        // // });
+        // }, 1000)
+    </script>
+
+</body>
+
+</html>
