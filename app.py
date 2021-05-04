@@ -6,7 +6,7 @@ app = Flask(__name__)
 data =[]
 
 import redis
-redisClient = redis.StrictRedis(host="10.0.3.153",port=6379,db=0,decode_responses=True)
+redisClient = redis.StrictRedis(host="10.1.0.79",port=6379,db=0,decode_responses=True)
 
 @app.route("/", methods=["GET","POST"])
 def get_email():
